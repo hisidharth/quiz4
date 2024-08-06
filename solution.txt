@@ -1,0 +1,29 @@
+section .data
+    x db 5      
+    y db 10    
+    z db 15      
+    result db 0  
+
+section .bss
+
+section .text
+    global _start
+
+_start:
+    call addVars
+
+    mov eax, 1    
+    xor ebx, ebx  
+    int 0x80      
+
+addVars:
+    mov al, [x]
+    mov bl, [y]
+    mov cl, [z]
+
+    add al, bl
+    add al, cl
+
+    mov [result], al
+
+    ret
